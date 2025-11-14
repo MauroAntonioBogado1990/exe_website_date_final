@@ -1,6 +1,6 @@
 {
     'name': 'Web Site Date',
-    'version': '15.0',
+    'version': '16.0',
     'category': 'Tools',
     'author':'Mauro Bogado,Exemax',
     'summary': 'Modulo para poder realizar la carga de un contacto desde el entorno de la web y replicarlo en el entorno de Odoo',
@@ -8,6 +8,7 @@
     'data': [
         #'security/ir.model.access.csv',
         'views/website_date.xml',
+        'views/res_partner_view.xml',
         
         
     ],

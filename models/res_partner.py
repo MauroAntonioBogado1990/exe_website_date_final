@@ -76,7 +76,7 @@ class PartnerInherit(models.Model):
     ],
     string='Categoría de Producto (Otros)',
     default='others_products_categories',
-    required=True,
+    
     )
     text_others_products_categories = fields.Char("Especificar otros productos")
     additional_comments = fields.Text("Comentarios adicionales")

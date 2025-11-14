@@ -23,10 +23,10 @@ class WebsiteNewClientForm(http.Controller):
     def nuevo_cliente_enviar(self, **post):
         
 
-        if post.get('trabaja_mercaderia') == 'Sí':
-            comment += f"A quién le compra o compraba repuestos: {post.get('origen_producto_si')}\n"
-        elif post.get('trabaja_mercaderia') == 'No':
-            comment += f"¿Cómo conoció los productos?: {post.get('origen_producto_no')}\n"
+        # if post.get('trabaja_mercaderia') == 'Sí':
+        #     comment += f"A quién le compra o compraba repuestos: {post.get('origen_producto_si')}\n"
+        # elif post.get('trabaja_mercaderia') == 'No':
+        #     comment += f"¿Cómo conoció los productos?: {post.get('origen_producto_no')}\n"
         
         #agregado de pais
         countries = request.env['res.country'].sudo().search([], order='name ASC')
