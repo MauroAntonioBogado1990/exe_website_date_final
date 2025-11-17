@@ -8,7 +8,7 @@
         <field name="parent_id" ref="website.menu_site"/>
         </record> -->
 <record id="menu_info_newclient" model="website.menu">
-  <field name="name">Nuevos clientes</field>
+  <field name="name">Registrarse</field>
   <field name="url">/nuevo_cliente</field>
   <field name="sequence" eval="85"/>
 </record>
@@ -51,7 +51,11 @@
             <label for="city">Pais</label>
             <input type="text" name="country" id="country" class="form-control" required="1"/>
           </div>
-
+          <!--Nombre de la empresa-->  
+          <div class="col-md-6 mb-3">
+            <label for="company_name">Nombre de la empresa</label>
+            <input type="text" name="company_name" id="company_name" class="form-control" required="1"/>
+          </div>
           <!-- Datos fiscales -->
           <div class="col-md-6 mb-3">
             <label for="afip_id">Responsabilidad ante AFIP/ARCA</label>
