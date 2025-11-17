@@ -246,26 +246,52 @@
    * Muestra u oculta los campos para 'emprendedor' o 'negocio',
    * incluyendo la limpieza de campos al ocultar.
    */
-  function toggleClientType() {
-    // Obtiene el valor del radio button seleccionado para client_type
-    const tipo = document.querySelector('input[name="client_type"]:checked')?.value;
-    
-    const camposEmprendedor = document.getElementById('campos_emprendedor');
-    const camposNegocio = document.getElementById('campos_negocio');
+ function toggleClientType() {
+  const tipo = document.querySelector('input[name="client_type"]:checked')?.value;
 
-    // Muestra/Oculta campos para Emprendedor
-    camposEmprendedor.style.display = tipo === 'entrepreneur' ? 'block' : 'none';
-    // Muestra/Oculta campos para Negocio
-    camposNegocio.style.display = tipo === 'business_owner' ? 'block' : 'none';
+  const camposEmprendedor = document.getElementById('campos_emprendedor');
+  const camposNegocio = document.getElementById('campos_negocio');
 
-    // Limpia los campos si se ocultan para evitar el envío de datos obsoletos
-    if (tipo !== 'entrepreneur') {
-      camposEmprendedor.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-    }
-    if (tipo !== 'business_owner') {
-      camposNegocio.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-    }
+  // Campos de emprendedor
+  const experienciaSi = document.getElementById("exp_si");
+  const experienciaNo = document.getElementById("exp_no");
+  const motivacion = document.getElementById("motivation_text");
+
+  // Campos de negocio
+  const businessYears = document.getElementById("business_years");
+  const employeeCount = document.getElementById("employee_count");
+  const storeCount = document.getElementById("store_count");
+
+  // Mostrar/Ocultar bloques
+  camposEmprendedor.style.display = tipo === 'entrepreneur' ? 'block' : 'none';
+  camposNegocio.style.display = tipo === 'business_owner' ? 'block' : 'none';
+
+  // Limpiar y desactivar campos si no aplica
+  if (tipo !== 'entrepreneur') {
+    camposEmprendedor.querySelectorAll('input, select, textarea').forEach(el => {
+      el.value = '';
+      el.checked = false;
+      el.required = false;
+    });
+  } else {
+    experienciaSi.required = true;
+    experienciaNo.required = true;
+    motivacion.required = true;
   }
+
+  if (tipo !== 'business_owner') {
+    camposNegocio.querySelectorAll('input, select, textarea').forEach(el => {
+      el.value = '';
+      el.checked = false;
+      el.required = false;
+    });
+  } else {
+    businessYears.required = true;
+    employeeCount.required = true;
+    storeCount.required = true;
+  }
+}
+
 </script>
 
 <script>
