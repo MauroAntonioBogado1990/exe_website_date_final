@@ -270,11 +270,10 @@
   camposEmprendedor.style.display = tipo === 'entrepreneur' ? 'block' : 'none';
   camposNegocio.style.display = tipo === 'business_owner' ? 'block' : 'none';
 
-  // Limpiar y desactivar campos si no aplica
+  // No limpiar valores al ocultar (preserva la selección de radios antes de enviar)
+  // Solo desactivamos la validación requerida cuando no aplica
   if (tipo !== 'entrepreneur') {
     camposEmprendedor.querySelectorAll('input, select, textarea').forEach(el => {
-      el.value = '';
-      el.checked = false;
       el.required = false;
     });
   } else {
@@ -285,8 +284,6 @@
 
   if (tipo !== 'business_owner') {
     camposNegocio.querySelectorAll('input, select, textarea').forEach(el => {
-      el.value = '';
-      el.checked = false;
       el.required = false;
     });
   } else {

@@ -1,5 +1,8 @@
 from odoo import http
 from odoo.http import request
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class WebsiteNewClientForm(http.Controller):
 
@@ -52,6 +55,10 @@ class WebsiteNewClientForm(http.Controller):
 
 
         # ✅ Si el CUIT es válido, se crea el partner
+        # Normalizar el valor recibido para has_experience (acepta '1','on','true','yes')
+        has_exp_raw = post.get('has_experience')
+        has_experience = str(has_exp_raw).lower() in ('1', 'true', 'on', 'yes')
+
         partner = request.env['res.partner'].sudo().create({
             'name': post.get('name'),
             'city': post.get('city'),
@@ -74,7 +81,7 @@ class WebsiteNewClientForm(http.Controller):
             'how_met_us_other_products': post.get('how_met_us_other_products'),
             'client_type': post.get('client_type'),
             #'has_experience': post.get('has_experience') == 'on' or post.get('has_experience') == '1',
-            'has_experience': post.get('has_experience') == '1',
+            'has_experience': has_experience,
             'motivation_text': post.get('motivation_text'),
             'website' : post.get('website_url'),
             # website_url': post.get('website_url'),
@@ -93,6 +100,12 @@ class WebsiteNewClientForm(http.Controller):
         
         # Cambia a contacto individual
         partner.sudo().write({'company_type': 'person'})
+
+        # Loguear para debug: valor crudo recibido y valor final en partner
+        try:
+            _logger.info("Nuevo partner creado id=%s has_experience=%s (raw=%s)", partner.id, partner.has_experience, has_exp_raw)
+        except Exception:
+            _logger.exception("Error al loguear el valor de has_experience para partner %s", partner and partner.id)
         
         
         
